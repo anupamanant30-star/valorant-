@@ -1,0 +1,201 @@
+/* --- 1. GLOBAL RESET & VARIABLES --- */
+:root {
+    --val-red: #ff4655;
+    --val-black: #0f1923;
+    --val-white: #ece8e1;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+
+body { 
+    font-family: 'Arial', sans-serif; 
+    background: var(--val-black); 
+    color: var(--val-white); 
+    overflow-x: hidden; 
+    min-height: 100vh;
+}
+
+/* --- 2. CUSTOM CURSOR --- */
+#cursor {
+    width: 20px; height: 20px; 
+    border: 1px solid var(--val-red);
+    position: fixed; top: 0; left: 0; 
+    z-index: 9999; pointer-events: none;
+    border-radius: 50%; 
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.05s linear; mix-blend-mode: exclusion;
+}
+#cursor::after { content: ''; width: 4px; height: 4px; background: var(--val-red); border-radius: 50%; }
+
+.cursor-hover { 
+    width: 50px !important; height: 50px !important; 
+    background: rgba(255, 70, 85, 0.2); 
+    border-color: transparent !important; 
+}
+
+/* --- 3. NAVIGATION --- */
+nav {
+    position: fixed; top: 0; width: 100%; padding: 20px 50px;
+    display: flex; justify-content: space-between; align-items: center; 
+    z-index: 1000;
+    background: linear-gradient(to bottom, rgba(15,25,35,0.95), transparent);
+}
+.logo { font-weight: 900; font-size: 24px; letter-spacing: 5px; text-transform: uppercase; }
+.logo span { color: var(--val-red); }
+
+.nav-links a { 
+    color: white; text-decoration: none; font-weight: bold; 
+    margin: 0 20px; font-size: 13px; letter-spacing: 1px; transition: 0.3s; 
+}
+.nav-links a:hover, .nav-links a.active { color: var(--val-red); }
+
+.play-btn { 
+    background: var(--val-red); color: white; border: none; 
+    padding: 12px 30px; font-weight: bold; 
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+    transition: 0.3s;
+}
+.play-btn:hover { background: white; color: black; }
+
+/* --- 4. HOME PAGE (HERO FIX) --- */
+.hero {
+    position: relative; width: 100vw; height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; background: #000;
+}
+.hero-bg {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%); /* Centers video perfectly */
+    min-width: 100%; min-height: 100%;
+    width: auto; height: auto;
+    object-fit: cover; /* Prevents black bars */
+    opacity: 0.6; z-index: 0; pointer-events: none;
+}
+.hero-content { position: relative; z-index: 2; text-align: center; }
+.glitch-title { 
+    font-size: clamp(4rem, 10vw, 8rem); font-weight: 900; 
+    font-style: italic; letter-spacing: -5px; line-height: 1; margin-bottom: 10px; 
+}
+
+/* --- 5. AGENTS PAGE (GRID FIX) --- */
+.agents-page-wrapper {
+    padding: 150px 50px 100px; /* Clears Nav Bar */
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #1a2532 0%, #0f1923 100%);
+}
+
+.section-title {
+    text-align: center; font-size: 3.5rem; font-style: italic; 
+    margin-bottom: 60px; text-transform: uppercase;
+    color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+}
+
+.grid {
+    display: grid;
+    /* Smart columns: fit as many as possible, min width 300px */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.agent-card {
+    height: 500px;
+    position: relative;
+    background: #000;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: 0.3s ease-out;
+    
+    /* SAFETY LOCK: Prevents giant image bug */
+    width: 100%; max-width: 400px; margin: 0 auto;
+}
+
+.agent-card:hover { transform: translateY(-10px); border-color: var(--val-red); z-index: 10; }
+
+.agent-portrait {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: top center;
+    opacity: 0.8; transition: 0.4s;
+}
+.agent-card:hover .agent-portrait { opacity: 1; transform: scale(1.05); }
+
+.agent-info {
+    position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px;
+    background: linear-gradient(to top, var(--val-black), transparent);
+}
+.agent-info h2 { font-size: 2.5rem; font-style: italic; text-transform: uppercase; line-height: 1; }
+.agent-role { color: var(--val-red); font-weight: bold; font-size: 0.8rem; letter-spacing: 2px; }
+
+/* Ability HUD */
+.ability-hud { display: flex; gap: 10px; margin-top: 15px; opacity: 0; transform: translateY(20px); transition: 0.4s; }
+.agent-card:hover .ability-hud { opacity: 1; transform: translateY(0); }
+.ability-slot { 
+    width: 35px; height: 35px; border: 1px solid rgba(255,255,255,0.3); 
+    display: flex; align-items: center; justify-content: center; 
+    background: rgba(0,0,0,0.6); font-weight: bold; font-size: 12px;
+}
+
+/* --- 6. ARMORY PAGE --- */
+.armory-page-wrapper {
+    padding-top: 150px; padding-bottom: 100px;
+    min-height: 100vh;
+    background: radial-gradient(circle at top right, #1a2532 0%, #0f1923 100%);
+    display: flex; justify-content: center;
+}
+
+.container { width: 100%; max-width: 1400px; padding: 0 20px; }
+.armory-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 40px; }
+@media (max-width: 900px) { .armory-grid { grid-template-columns: 1fr; } }
+
+.weapon-btn {
+    background: transparent; border: 1px solid rgba(255,255,255,0.1);
+    color: #8b9bb4; padding: 25px; text-align: left; transition: 0.3s;
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; width: 100%;
+}
+.weapon-btn:hover, .weapon-btn.active { 
+    background: var(--val-red); color: white; border-color: var(--val-red); padding-left: 35px; 
+}
+.w-name { font-weight: 900; font-size: 1.2rem; }
+
+.weapon-display {
+    background: rgba(26, 37, 50, 0.4); border: 1px solid rgba(255,255,255,0.1);
+    position: relative; padding: 40px; overflow: hidden; 
+    display: flex; flex-direction: column; min-height: 500px;
+}
+.holo-grid {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 20px 20px; pointer-events: none;
+}
+.weapon-visual { 
+    flex-grow: 1; display: flex; align-items: center; justify-content: center; margin: 20px 0; 
+}
+.weapon-visual img { 
+    width: 100%; max-width: 500px; height: 250px; object-fit: contain; 
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); transition: 0.4s; 
+}
+
+.stats-container { margin-top: auto; }
+.bar-bg { width: 100%; height: 6px; background: rgba(255,255,255,0.1); margin-top: 5px; margin-bottom: 15px; }
+.bar-fill { height: 100%; background: var(--val-white); transition: width 0.6s ease-out; }
+
+/* --- 7. INTEL SECTION (HOME) --- */
+.intel-section { background: var(--val-black); padding-bottom: 80px; border-top: 1px solid rgba(255,255,255,0.1); }
+.ticker-wrap { background: var(--val-red); color: black; font-weight: 900; overflow: hidden; white-space: nowrap; padding: 10px 0; }
+.new-agent-card {
+    height: 450px; margin-top: 80px;
+    background: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200') center/cover;
+    position: relative; border: 1px solid rgba(255,255,255,0.1); 
+    display: flex; align-items: center; justify-content: flex-start;
+}
+.card-content { position: relative; z-index: 2; padding-left: 60px; max-width: 600px; background: linear-gradient(90deg, #0f1923, transparent); height: 100%; display: flex; flex-direction: column; justify-content: center; }
+.btn-primary { 
+    background: transparent; border: 1px solid white; color: white; 
+    padding: 15px 40px; font-weight: bold; margin-top: 20px; transition: 0.3s; 
+}
+.btn-primary:hover { background: var(--val-red); border-color: var(--val-red); }
+
+/* --- UTILS --- */
+.reveal { opacity: 0; transform: translateY(30px); transition: 1s; }
+.reveal.active { opacity: 1; transform: translateY(0); }

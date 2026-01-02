@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VALORANT - Protocol</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="cursor"></div>
+    <div id="killfeed"></div>
+    
+    <nav>
+        <div class="logo">VALO<span>RANT</span></div>
+        <div class="nav-links">
+            <a href="gaming.html" class="active hover-target">HOME</a>
+            <a href="agent.html" class="hover-target">AGENTS</a>
+            <a href="armory.html" class="hover-target">ARMORY</a>
+        </div>
+        <button class="play-btn hover-target">PLAY NOW</button>
+    </nav>
+
+    <section class="hero">
+        <video autoplay muted loop playsinline class="hero-bg" id="bgVideo">
+            <source src="images/background.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+        <div class="hero-content">
+            <h1 class="glitch-title reveal">VALORANT</h1>
+            <p class="reveal">DEFY THE LIMITS</p>
+        </div>
+    </section>
+
+    <section class="intel-section">
+        <div class="ticker-wrap">
+            <div class="ticker">
+                // PRIORITY ALERT: NEW AGENT DETECTED // PATCH 9.02 LIVE // COMPETITIVE QUEUE: ENABLED // NIGHT MARKET: OPEN // 
+            </div>
+        </div>
+        <div class="intel-container reveal">
+            <div class="new-agent-card">
+                <div class="card-content">
+                    <span class="intel-tag">/// CLASSIFIED</span>
+                    <h1>AGENT 27: INCOMING</h1>
+                    <p>Sensors detect high-frequency radiant energy. Origin: Unknown.</p>
+                    <div class="countdown">04 : 12 : 55</div>
+                    <button class="btn-primary hover-target">DECRYPT INTEL</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VALORANT - Armory</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="cursor"></div>
+    <div id="killfeed"></div>
+    
+    <nav>
+        <div class="logo">VALO<span>RANT</span></div>
+        <div class="nav-links">
+            <a href="gaming.html" class="hover-target">HOME</a>
+            <a href="agent.html" class="hover-target">AGENTS</a>
+            <a href="armory.html" class="active hover-target">ARMORY</a>
+        </div>
+        <button class="play-btn hover-target">PLAY NOW</button>
+    </nav>
+
+    <section class="armory-page-wrapper">
+        <div class="container">
+            <h2 class="section-title reveal">// WEAPON ARSENAL</h2>
+            
+            <div class="armory-grid reveal">
+                <div class="weapon-list">
+                    <button class="weapon-btn active hover-target" onclick="selectWeapon('vandal', this)">
+                        <span class="w-name">VANDAL</span>
+                        <span class="w-type">RIFLE</span>
+                    </button>
+                    <button class="weapon-btn hover-target" onclick="selectWeapon('phantom', this)">
+                        <span class="w-name">PHANTOM</span>
+                        <span class="w-type">RIFLE</span>
+                    </button>
+                    <button class="weapon-btn hover-target" onclick="selectWeapon('operator', this)">
+                        <span class="w-name">OPERATOR</span>
+                        <span class="w-type">SNIPER</span>
+                    </button>
+                    <button class="weapon-btn hover-target" onclick="selectWeapon('sheriff', this)">
+                        <span class="w-name">SHERIFF</span>
+                        <span class="w-type">SIDEARM</span>
+                    </button>
+                </div>
+
+                <div class="weapon-display">
+                    <div class="holo-grid"></div>
+                    
+                    <div class="display-header">
+                        <h1 id="w-title">VANDAL</h1>
+                        <p id="w-desc">High damage, high recoil. Lethal at any range with precise aim.</p>
+                    </div>
+
+                    <div class="weapon-visual">
+                        <img id="w-img" src="images/vandal.png" alt="Weapon Preview">
+                    </div>
+
+                    <div class="stats-container">
+                        <div class="stat-row">
+                            <span>DAMAGE</span>
+                            <div class="bar-bg"><div id="bar-dmg" class="bar-fill" style="width: 90%;"></div></div>
+                        </div>
+                        <div class="stat-row">
+                            <span>FIRE RATE</span>
+                            <div class="bar-bg"><div id="bar-fr" class="bar-fill" style="width: 65%;"></div></div>
+                        </div>
+                        <div class="stat-row">
+                            <span>PENETRATION</span>
+                            <div class="bar-bg"><div id="bar-pen" class="bar-fill" style="width: 75%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
